@@ -2,7 +2,8 @@ module Lib
     ( toDigits,
     toDigitsRev,
     doubleEveryOther,
-    sumDigits
+    sumDigits,
+    validate
     ) where
 
 -- exercise 1
@@ -19,3 +20,6 @@ doubleEveryOther xs = foldl(\a e -> if fst e `mod` 2 == 0 then snd e:a else (2 *
 -- exercise 3
 sumDigits :: [Integer] -> Integer
 sumDigits xs = sum $ map (sum . toDigitsRev ) xs
+
+validate :: Integer -> Bool
+validate xs = (sumDigits $ doubleEveryOther $ toDigits xs) `mod` 10 == 0 
