@@ -21,4 +21,7 @@ spec = do
     describe "sumDigits" $ do
         it "sumDigits [1,2,3] should be 6" $ sumDigits [1,2,3] `shouldBe` 6
         it "sumDigits [11,22,33] should be 12" $ sumDigits [11,22,33] `shouldBe` 12
-        
+    describe "validate" $ do
+        it "validate 4012888888881881 should be True" $ validate 4012888888881881 `shouldBe` True
+        it "validate 4012888888881882 should be False" $ validate 4012888888881882 `shouldBe` False
+            
