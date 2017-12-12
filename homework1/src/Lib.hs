@@ -18,4 +18,4 @@ doubleEveryOther xs = foldl(\a e -> if fst e `mod` 2 == 0 then snd e:a else (2 *
 
 -- exercise 3
 sumDigits :: [Integer] -> Integer
-sumDigits xs = sum $ map (sum) $ map (toDigitsRev ) xs
+sumDigits xs = sum $ map (sum . toDigitsRev ) xs
