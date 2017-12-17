@@ -1,6 +1,11 @@
 -- CIS 194 Homework 2
 
-module Log where
+module Log(
+  MessageType,
+  TimeStamp,
+  LogMessage,
+  MessageTree  
+) where
 
 import Control.Applicative
 

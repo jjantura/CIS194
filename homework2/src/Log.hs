@@ -6,7 +6,7 @@ module Log where
 data MessageType = Info
                     | Warning
                     | Error Int
-    deriving (Show, Eq)
+    deriving (Read, Show, Eq)
 
 type TimeStamp = Int
 
