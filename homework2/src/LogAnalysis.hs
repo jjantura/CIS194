@@ -27,7 +27,6 @@ parseErrorMessage args =
         else Unknown (unwords args)
 
 parseMessage :: String -> LogMessage
-parseMessage [] = Unknown ""
 parseMessage s = 
     let tokens = words s
         lineBody = tail tokens 
