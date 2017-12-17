@@ -13,8 +13,8 @@ lineHeaders = ["I", "W", "E"]
 
 parseMessageWithTimestamp :: MessageType -> [String] -> LogMessage
 parseMessageWithTimestamp mt args = 
-    let maybeTimeStamp = readMaybe (head args) :: Maybe TimeStamp in
-        if isJust maybeTimeStamp then LogMessage mt (fromJust maybeTimeStamp) (unwords $ drop 1 args) else Unknown (unwords args) 
+    let maybeTimeStamp = readMaybe (args !! 1) :: Maybe TimeStamp in
+        if isJust maybeTimeStamp then LogMessage mt (fromJust maybeTimeStamp) (unwords $ drop 2 args) else Unknown (unwords args) 
 
 parseErrorMessage :: [String] -> LogMessage
 parseErrorMessage args = 
@@ -31,8 +31,8 @@ parseMessage s =
         lineHeader = head tokens in
         if length tokens >= 2 && elem lineHeader lineHeaders then
         case lineHeader of
-            "I" -> parseMessageWithTimestamp Info lineBody 
-            "W" -> parseMessageWithTimestamp Warning lineBody
+            "I" -> parseMessageWithTimestamp Info (words s) 
+            "W" -> parseMessageWithTimestamp Warning (words s)
             "E" -> if length tokens >= 3 then parseErrorMessage lineBody else Unknown (unwords lineBody)
             _ -> Unknown (unwords lineBody)
         else
