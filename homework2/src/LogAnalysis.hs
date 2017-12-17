@@ -11,15 +11,18 @@ import Log
 lineHeaders :: [String]
 lineHeaders = ["I", "W", "E"]
 
+parseTimeStamp :: String -> Maybe TimeStamp
+parseTimeStamp ts = readMaybe ts :: Maybe TimeStamp
+
 parseMessageWithTimestamp :: MessageType -> [String] -> LogMessage
 parseMessageWithTimestamp mt args = 
-    let maybeTimeStamp = readMaybe (args !! 1) :: Maybe TimeStamp in
+    let maybeTimeStamp =  parseTimeStamp $ args !! 1 in
         if isJust maybeTimeStamp then LogMessage mt (fromJust maybeTimeStamp) (unwords $ drop 2 args) else Unknown (unwords args) 
 
 parseErrorMessage :: [String] -> LogMessage
 parseErrorMessage args = 
     let maybeSeverity = readMaybe (head args) :: Maybe Int 
-        maybeTimeStamp = readMaybe (args !! 1) :: Maybe TimeStamp in
+        maybeTimeStamp = parseTimeStamp $ args !! 1 in
         if isJust maybeSeverity && isJust maybeTimeStamp then LogMessage (Error (fromJust maybeSeverity)) (fromJust maybeTimeStamp) (unwords $ drop 2 args)     
         else Unknown (unwords args)
 
@@ -37,8 +40,3 @@ parseMessage s =
             _ -> Unknown (unwords lineBody)
         else
             Unknown s
-
-    
-            
-
-    
