@@ -8,9 +8,6 @@ import Data.Maybe
 import Log
 
 -- exercise 1, could be done by pattern matching "I":ts:xs but read doesn't return Maybe, failed parsing returns error
-lineHeaders :: [String]
-lineHeaders = ["I", "W", "E"]
-
 parseTimeStamp :: String -> Maybe TimeStamp
 parseTimeStamp ts = readMaybe ts :: Maybe TimeStamp
 
