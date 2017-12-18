@@ -21,22 +21,20 @@ parseMessageWithTimestamp mt args =
 
 parseErrorMessage :: [String] -> LogMessage
 parseErrorMessage args = 
-    let maybeSeverity = readMaybe (head args) :: Maybe Int 
-        maybeTimeStamp = parseTimeStamp $ args !! 1 in
-        if isJust maybeSeverity && isJust maybeTimeStamp then LogMessage (Error (fromJust maybeSeverity)) (fromJust maybeTimeStamp) (unwords $ drop 2 args)     
+    let maybeSeverity = readMaybe (args !! 1) :: Maybe Int 
+        maybeTimeStamp = parseTimeStamp $ args !! 2 in
+        if isJust maybeSeverity && isJust maybeTimeStamp then LogMessage (Error (fromJust maybeSeverity)) (fromJust maybeTimeStamp) (unwords $ drop 3 args)     
         else Unknown (unwords args)
 
 parseMessage :: String -> LogMessage
 parseMessage s = 
-    let tokens = words s
-        lineBody = tail tokens 
-        lineHeader = head tokens in
-        if length tokens >= 2 && elem lineHeader lineHeaders then
-        case lineHeader of
-            "I" -> parseMessageWithTimestamp Info (words s) 
-            "W" -> parseMessageWithTimestamp Warning (words s)
-            "E" -> if length tokens >= 3 then parseErrorMessage lineBody else Unknown (unwords lineBody)
-            _ -> Unknown (unwords lineBody)
+    let tokens = words s in
+        if length tokens >= 2 then
+            case head tokens of
+                "I" -> parseMessageWithTimestamp Info (words s) 
+                "W" -> parseMessageWithTimestamp Warning (words s)
+                "E" -> if length tokens >= 3 then parseErrorMessage (words s) else Unknown s
+                _ -> Unknown s
         else
             Unknown s
             
