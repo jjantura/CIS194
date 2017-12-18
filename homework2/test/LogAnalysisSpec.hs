@@ -3,7 +3,8 @@ module LogAnalysisSpec where
 import           Log
 import           LogAnalysis
 import           Test.Hspec
-        
+
+spec :: SpecWith()        
 spec = 
     describe "parseMessage" $ do
         it "should return valid info message" $ parseMessage "I 123 text" `shouldBe` LogMessage Info 123 "text"
