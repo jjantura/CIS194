@@ -1,6 +1,7 @@
 module LogAnalysis
     ( 
-        parseMessage 
+        parseMessage,
+        insert
     ) where
 
 import Text.Read
@@ -34,7 +35,16 @@ parseMessage s =
                 _ -> Unknown s
         else
             Unknown s
-            
+
+-- getTimeStampFromNode :: MessageTree -> TimeStamp
+-- getTimeStampFromNode (Node mtl )
+
 -- exercise 2
 insert :: LogMessage -> MessageTree -> MessageTree
-insert = undefined
+insert (Unknown s) mt = mt
+insert (LogMessage mty ts s) Leaf = Node Leaf (LogMessage mty ts s) Leaf   
+insert (LogMessage mty ts s) (Node mtl (LogMessage mtyi tsi si) mtr) = 
+    if ts <= tsi then Node (insert (LogMessage mty ts s) mtl) (LogMessage mtyi tsi si) mtr else
+        Node mtl (LogMessage mtyi tsi si) (insert (LogMessage mty ts s) mtr)
+insert _ mt = mt
+
