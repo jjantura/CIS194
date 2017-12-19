@@ -35,3 +35,6 @@ parseMessage s =
         else
             Unknown s
             
+-- exercise 2
+insert :: LogMessage -> MessageTree -> MessageTree
+insert = undefined
