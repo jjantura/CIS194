@@ -5,7 +5,7 @@ import           LogAnalysis
 import           Test.Hspec
 
 spec :: SpecWith()        
-spec = 
+spec = do
     describe "parseMessage" $ do
         it "should return valid info message" $ parseMessage "I 123 text" `shouldBe` LogMessage Info 123 "text"
         it "should return valid warning message" $ parseMessage "W 123 text" `shouldBe` LogMessage Warning 123 "text"
@@ -15,3 +15,8 @@ spec =
         it "should return Unknown for invalid timestamp" $ parseMessage "I TS somestring" `shouldBe` Unknown "I TS somestring"
         it "should return Unknown for empty string" $ parseMessage "" `shouldBe` Unknown ""
         it "should return Unknown for invalid error level" $ parseMessage "E EL 120 meh" `shouldBe` Unknown "E EL 120 meh"
+    
+    describe "insert" $ do
+        it "shouldn't insert Unknown into the tree" $ insert (Unknown "text") Leaf `shouldBe` Leaf 
+        it "should insert into empty tree" $ insert (LogMessage Info 1 "text") Leaf `shouldBe` Node Leaf (LogMessage Info 1 "text") Leaf
+        it "should insert into non-empty tree in proper order" $ (insert (LogMessage Info 2 "text") $ insert (LogMessage Info 1 "text") Leaf) `shouldBe` Node Leaf (LogMessage Info 1 "text") (Node Leaf (LogMessage Info 2 "text") Leaf)
