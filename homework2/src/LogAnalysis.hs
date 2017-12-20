@@ -36,9 +36,6 @@ parseMessage s =
         else
             Unknown s
 
--- getTimeStampFromNode :: MessageTree -> TimeStamp
--- getTimeStampFromNode (Node mtl )
-
 -- exercise 2
 insert :: LogMessage -> MessageTree -> MessageTree
 insert (Unknown s) mt = mt
