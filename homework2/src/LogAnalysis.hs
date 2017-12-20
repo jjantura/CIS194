@@ -1,7 +1,9 @@
 module LogAnalysis
     ( 
         parseMessage,
-        insert
+        parse,
+        insert,
+        build
     ) where
 
 import Text.Read
@@ -50,4 +52,4 @@ insert _ mt = mt
 
 -- exercise 3
 build :: [LogMessage] -> MessageTree
-build logMessages = foldl (\a e ->) 
+build logMessages = foldl (\a e -> insert e a) Leaf logMessages 
