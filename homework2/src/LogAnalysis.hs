@@ -36,6 +36,9 @@ parseMessage s =
         else
             Unknown s
 
+parse :: String -> [LogMessage]
+parse s = map parseMessage $ lines s
+
 -- exercise 2
 insert :: LogMessage -> MessageTree -> MessageTree
 insert (Unknown _) messageTree = messageTree
