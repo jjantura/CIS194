@@ -50,4 +50,4 @@ insert _ mt = mt
 
 -- exercise 3
 build :: [LogMessage] -> MessageTree
-build logMessages = undefined
+build logMessages = foldl (\a e ->) 
