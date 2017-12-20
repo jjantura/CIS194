@@ -48,3 +48,6 @@ insert (LogMessage messageType timeStamp string) (Node left (LogMessage mTy tS s
         Node left (LogMessage mTy tS sT) (insert (LogMessage messageType timeStamp string) right)
 insert _ mt = mt
 
+-- exercise 3
+build :: [LogMessage] -> MessageTree
+build logMessages = undefined
