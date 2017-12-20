@@ -38,10 +38,10 @@ parseMessage s =
 
 -- exercise 2
 insert :: LogMessage -> MessageTree -> MessageTree
-insert (Unknown s) mt = mt
-insert (LogMessage mty ts s) Leaf = Node Leaf (LogMessage mty ts s) Leaf   
-insert (LogMessage mty ts s) (Node mtl (LogMessage mtyi tsi si) mtr) = 
-    if ts <= tsi then Node (insert (LogMessage mty ts s) mtl) (LogMessage mtyi tsi si) mtr else
-        Node mtl (LogMessage mtyi tsi si) (insert (LogMessage mty ts s) mtr)
+insert (Unknown _) messageTree = messageTree
+insert (LogMessage messageType timeStamp string) Leaf = Node Leaf (LogMessage messageType timeStamp string) Leaf   
+insert (LogMessage messageType timeStamp string) (Node left (LogMessage mTy tS sT) right) = 
+    if timeStamp <= tS then Node (insert (LogMessage messageType timeStamp string) left) (LogMessage mTy tS sT) right else
+        Node left (LogMessage mTy tS sT) (insert (LogMessage messageType timeStamp string) right)
 insert _ mt = mt
 
