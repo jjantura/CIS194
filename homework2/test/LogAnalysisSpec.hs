@@ -20,3 +20,7 @@ spec = do
         it "shouldn't insert Unknown into the tree" $ insert (Unknown "text") Leaf `shouldBe` Leaf 
         it "should insert into empty tree" $ insert (LogMessage Info 1 "text") Leaf `shouldBe` Node Leaf (LogMessage Info 1 "text") Leaf
         it "should insert into non-empty tree in proper order" $ (insert (LogMessage Info 2 "text") $ insert (LogMessage Info 1 "text") Leaf) `shouldBe` Node Leaf (LogMessage Info 1 "text") (Node Leaf (LogMessage Info 2 "text") Leaf)
+    
+    describe "inOrder" $ do
+        it "should unfold Leaf to an empty list" $ inOrder Leaf `shouldBe` []
+        it "should unfold valid MessageTree to sorted list" $ (inOrder $ build [LogMessage Info 2 "2", LogMessage Info 1 "1"]) `shouldBe` [LogMessage Info 1 "1", LogMessage Info 2 "2"]
