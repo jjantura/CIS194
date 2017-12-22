@@ -3,7 +3,8 @@ module LogAnalysis
         parseMessage,
         parse,
         insert,
-        build
+        build,
+        inOrder
     ) where
 
 import Text.Read
@@ -52,4 +53,11 @@ insert _ mt = mt
 
 -- exercise 3
 build :: [LogMessage] -> MessageTree
-build logMessages = foldl (\a e -> insert e a) Leaf logMessages 
+build logMessages = foldl (\a e -> insert e a) Leaf logMessages
+
+-- exercise 4
+inOrder :: MessageTree -> [LogMessage]
+inOrder Leaf = []
+inOrder (Node _ (Unknown _) _) = []
+inOrder (Node left (LogMessage messageType timeStamp string) right) = inOrder left ++ [LogMessage messageType timeStamp string] ++ inOrder right  
+
