@@ -4,7 +4,8 @@ module LogAnalysis
         parse,
         insert,
         build,
-        inOrder
+        inOrder,
+        whatWentWrong
     ) where
 
 import Text.Read
@@ -61,3 +62,16 @@ inOrder Leaf = []
 inOrder (Node _ (Unknown _) _) = []
 inOrder (Node left (LogMessage messageType timeStamp string) right) = inOrder left ++ [LogMessage messageType timeStamp string] ++ inOrder right  
 
+
+isSeverityGreaterThan :: Int -> LogMessage -> Bool
+isSeverityGreaterThan n (LogMessage (Error s) _ _) = s > n
+isSeverityGreaterThan _ (LogMessage _ _ _ ) = False
+isSeverityGreaterThan _ (Unknown _) = False
+
+getMessageString :: LogMessage -> String
+getMessageString (LogMessage _ _ s) = s
+getMessageString (Unknown s) = s
+
+-- exercise 5
+whatWentWrong :: [LogMessage] -> [String]
+whatWentWrong lm = map getMessageString $ filter (isSeverityGreaterThan 50) lm
