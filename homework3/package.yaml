@@ -46,3 +46,4 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - homework3
+    - hspec
