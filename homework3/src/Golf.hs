@@ -14,3 +14,8 @@ skips xs = foldr (\e a -> picks e xs:a) [] [1..length xs]
 -- exercise 2
 localMaxima :: [Integer] -> [Integer]
 localMaxima n = [ n !! i | i <-[1..length n - 2], n !! i > n !! (i - 1) && n !! i > n !! (i + 1)]
+
+-- exercise 3
+histogram :: [Integer] -> String
+histogram = undefined
+
