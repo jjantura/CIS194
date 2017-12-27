@@ -18,5 +18,5 @@ localMaxima n = [ n !! i | i <-[1..length n - 2], n !! i > n !! (i - 1) && n !! 
 
 -- exercise 3
 histogram :: [Integer] -> String
-histogram = undefined
+histogram = "\n==========\n0123456789\n""
 
