@@ -1,7 +1,8 @@
 module Golf
     ( 
         skips,
-        localMaxima
+        localMaxima,
+        histogram
     ) where
 
 -- exercise 1
