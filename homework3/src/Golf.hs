@@ -26,7 +26,7 @@ count xs n = length $ filter(==n) xs
 histogram2 :: [Integer] -> [(Integer, Int)]
 histogram2 xs = foldr (\e a -> (e, count xs e):a) [] [0..9] 
 
--- exercise 3111
+-- exercise 3
 histogram :: [Integer] -> String
 histogram xs = "\n==========\n0123456789\n"
 
