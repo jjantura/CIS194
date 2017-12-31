@@ -2,11 +2,7 @@ module Golf
     ( 
         skips,
         localMaxima,
-        --count,
         histogram
-        --histogram2,
-        --maxHeight,
-        --scanline
     ) where
 
 -- exercise 1
