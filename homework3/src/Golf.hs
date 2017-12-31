@@ -2,11 +2,11 @@ module Golf
     ( 
         skips,
         localMaxima,
-        count,
-        histogram,
-        histogram2,
-        maxHeight,
-        scanline
+        --count,
+        histogram
+        --histogram2,
+        --maxHeight,
+        --scanline
     ) where
 
 -- exercise 1
@@ -20,23 +20,12 @@ skips xs = foldr (\e a -> picks e xs:a) [] [1..length xs]
 localMaxima :: [Integer] -> [Integer]
 localMaxima n = [ n !! i | i <-[1..length n - 2], n !! i > n !! (i - 1) && n !! i > n !! (i + 1)]
 
--- exercise 3 - helper function, count number of occurences
-count :: [Integer] -> Integer -> Integer
-count xs n = fromIntegral $ length $ filter(==n) xs 
-
--- helper functiom, calculate 'classic' histogram
-histogram2 :: [Integer] -> [(Integer, Integer)]
-histogram2 xs = foldr (\e a -> (e, count xs e):a) [] [0..9] 
-
--- convert classic histogram to a line
-scanline :: Integer -> [Integer] -> String
-scanline n xs = foldr (\e a -> if n <= e then '*':a else ' ':a) [] xs
-
-maxHeight :: [Integer] -> Integer
-maxHeight xs = maximum $ map (snd) $ histogram2 xs
-
 -- exercise 3
 histogram :: [Integer] -> String
 histogram xs = scanAll ++ "\n==========\n0123456789\n"
-        where scanAll = foldl(\a e -> "\n" ++ (scanline e $ map (snd) $ histogram2 xs)  ++ a) [] [1..maxHeight xs]
-
+        where scanAll = foldl(\a e -> "\n" ++ (scanline e $ map snd $ histogram2 xs)  ++ a) [] [1..maxHeight xs]
+              maxHeight xs = maximum $ map snd $ histogram2 xs
+              scanline n = foldr (\e a -> if n <= e then '*':a else ' ':a) []
+              histogram2 xs = foldr (\e a -> (e, count xs e):a) [] [0..9]
+              count xs n = fromIntegral $ length $ filter(==n) xs 
+  
