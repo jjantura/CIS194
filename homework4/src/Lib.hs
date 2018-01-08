@@ -41,3 +41,8 @@ insert x (Node n left val right)
 getHeight :: Tree a -> Integer
 getHeight Leaf = 0
 getHeight (Node n left val right) = n
+
+-- exercise 3
+-- 3.1
+xor :: [Bool] -> Bool
+xor = undefined
