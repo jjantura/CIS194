@@ -4,7 +4,8 @@ module Lib
     fun2,
     fun2',
     foldTree,
-    xor
+    xor,
+    map'
     ) where
 
 -- exercise 1
@@ -48,5 +49,6 @@ getHeight (Node n left val right) = n
 xor :: [Bool] -> Bool
 xor xs = odd $ foldl (\a e -> if e then a + 1 else a) 0 xs
 
+-- 3.2
 map' :: (a->b) -> [a] -> [b]
-map' = undefined
+map' f xs = foldr (\e a -> [f e] ++ a) [] xs 
