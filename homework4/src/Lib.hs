@@ -3,7 +3,8 @@ module Lib
     fun1',
     fun2,
     fun2',
-    foldTree
+    foldTree,
+    xor
     ) where
 
 -- exercise 1
@@ -45,4 +46,4 @@ getHeight (Node n left val right) = n
 -- exercise 3
 -- 3.1
 xor :: [Bool] -> Bool
-xor = undefined
+xor xs = odd $ foldl (\a e -> if e then a + 1 else a) 0 xs
