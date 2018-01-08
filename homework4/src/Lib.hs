@@ -47,3 +47,6 @@ getHeight (Node n left val right) = n
 -- 3.1
 xor :: [Bool] -> Bool
 xor xs = odd $ foldl (\a e -> if e then a + 1 else a) 0 xs
+
+map' :: (a->b) -> [a] -> [b]
+map' = undefined
