@@ -26,7 +26,7 @@ fun2' n = sum $ filter even $ takeWhile (/=1) $ iterate (\x -> if even x then x 
 -- exercise 2
 data Tree a = Leaf | Node Integer (Tree a) a (Tree a) deriving (Show, Eq)
 foldTree :: [a] -> Tree a
-foldTree xs = foldr (\val acc -> insert val acc) Leaf xs
+foldTree = foldr (\val acc -> insert val acc) Leaf
 
 insert :: a -> Tree a -> Tree a
 insert x Leaf = Node 0 (Leaf) x (Leaf)
