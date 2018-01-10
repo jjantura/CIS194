@@ -51,4 +51,4 @@ xor xs = odd $ foldl (\a e -> if e then a + 1 else a) 0 xs
 
 -- 3.2
 map' :: (a->b) -> [a] -> [b]
-map' f xs = foldr (\e a -> [f e] ++ a) [] xs 
+map' f = foldr (\e a -> [f e] ++ a) [] 
