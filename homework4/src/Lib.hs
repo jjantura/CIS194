@@ -29,7 +29,7 @@ foldTree :: [a] -> Tree a
 foldTree = foldr (\val acc -> insert val acc) Leaf
 
 insert :: a -> Tree a -> Tree a
-insert x Leaf = Node 0 (Leaf) x (Leaf)
+insert x Leaf = Node 0 Leaf x Leaf
 insert x (Node n left val right) 
     | h1 < h2 = Node n (insert x left) val right
     | h1 > h2 = Node n left val insertRight
