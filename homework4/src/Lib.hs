@@ -56,5 +56,8 @@ map' f = foldr (\e a -> [f e] ++ a) []
 
 -- exercise 4
 
+sieveSundaram :: Integer -> [Integer]
+sieveSundaram = undefinded
+
 cartProd :: [a] -> [b] -> [(a, b)]
 cartProd xs ys = [(x,y) | x <- xs, y <- ys]
