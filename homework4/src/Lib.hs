@@ -56,8 +56,11 @@ map' f = foldr (\e a -> [f e] ++ a) []
 
 -- exercise 4
 
+toBeFiltered :: Integer -> Integer
+toBeFiltered n = takeWhile (<=n) [ i + j + 2 * i * j | i <- [1..], j <- [i..]]
+
 sieveSundaram :: Integer -> [Integer]
-sieveSundaram = undefinded
+sieveSundaram n = []
 
 cartProd :: [a] -> [b] -> [(a, b)]
 cartProd xs ys = [(x,y) | x <- xs, y <- ys]
