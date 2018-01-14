@@ -5,7 +5,8 @@ module Lib
     fun2',
     foldTree,
     xor,
-    map'
+    map',
+    sieveSundaram
     ) where
 
 import Data.List
@@ -62,7 +63,7 @@ toBeFiltered :: Integer -> [Integer]
 toBeFiltered n = takeWhile (<=n) [ i + j + 2 * i * j | i <- [1..], j <- [i..]]
 
 sieveSundaram :: Integer -> [Integer]
-sieveSundaram n = []
+sieveSundaram n = map (+1) $ map (*2) $ [1..n] \\ toBeFiltered n
 
 cartProd :: [a] -> [b] -> [(a, b)]
 cartProd xs ys = [(x,y) | x <- xs, y <- ys]
