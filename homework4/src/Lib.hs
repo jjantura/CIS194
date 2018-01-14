@@ -33,7 +33,7 @@ foldTree = foldr (\val acc -> ins val acc) Leaf
 ins :: a -> Tree a -> Tree a
 ins x Leaf = Node 0 Leaf x Leaf
 ins x (Node n left val right) 
-    | h1 < h2 = Node n (insert x left) val right
+    | h1 < h2 = Node n (ins x left) val right
     | h1 > h2 = Node n left val insertRight
     | otherwise = Node (h+1) left val insertRight
     where
