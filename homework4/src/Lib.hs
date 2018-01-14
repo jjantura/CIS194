@@ -58,7 +58,7 @@ map' f = foldr (\e a -> [f e] ++ a) []
 
 -- exercise 4
 
-toBeFiltered :: Integer -> Integer
+toBeFiltered :: Integer -> [Integer]
 toBeFiltered n = takeWhile (<=n) [ i + j + 2 * i * j | i <- [1..], j <- [i..]]
 
 sieveSundaram :: Integer -> [Integer]
