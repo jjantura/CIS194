@@ -8,6 +8,8 @@ module Lib
     map'
     ) where
 
+import Data.List
+
 -- exercise 1
 fun1 :: [Integer] -> Integer
 fun1 [] = 1
@@ -26,18 +28,18 @@ fun2' n = sum $ filter even $ takeWhile (/=1) $ iterate (\x -> if even x then x 
 -- exercise 2
 data Tree a = Leaf | Node Integer (Tree a) a (Tree a) deriving (Show, Eq)
 foldTree :: [a] -> Tree a
-foldTree = foldr (\val acc -> insert val acc) Leaf
+foldTree = foldr (\val acc -> ins val acc) Leaf
 
-insert :: a -> Tree a -> Tree a
-insert x Leaf = Node 0 Leaf x Leaf
-insert x (Node n left val right) 
+ins :: a -> Tree a -> Tree a
+ins x Leaf = Node 0 Leaf x Leaf
+ins x (Node n left val right) 
     | h1 < h2 = Node n (insert x left) val right
     | h1 > h2 = Node n left val insertRight
     | otherwise = Node (h+1) left val insertRight
     where
         h1 = getHeight left
         h2 = getHeight right
-        insertRight = insert x right
+        insertRight = ins x right
         h = getHeight $ insertRight
             
 getHeight :: Tree a -> Integer
