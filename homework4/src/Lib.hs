@@ -64,6 +64,3 @@ toBeFiltered n = takeWhile (<=n) [ i + j + 2 * i * j | i <- [1..], j <- [i..]]
 
 sieveSundaram :: Integer -> [Integer]
 sieveSundaram n = map (+1) $ map (*2) $ [1..n] \\ toBeFiltered n
-
-cartProd :: [a] -> [b] -> [(a, b)]
-cartProd xs ys = [(x,y) | x <- xs, y <- ys]
