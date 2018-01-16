@@ -1,6 +1,8 @@
 module Lib
-    ( someFunc
+    ( eval
     ) where
 
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+import ExprT
+
+eval :: ExprT -> Integer
+eval = undefined
