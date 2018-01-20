@@ -3,6 +3,7 @@ module Lib
     ) where
 
 import ExprT
+import Parser
 
 eval :: ExprT -> Integer
 eval (Lit n) = n
