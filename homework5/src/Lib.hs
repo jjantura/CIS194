@@ -1,11 +1,22 @@
 module Lib
     ( eval,
-    evalStr
+    evalStr,
+    lit, mul, add
     ) where
 
 import Data.Maybe
 import ExprT
 import Parser
+
+class Expr a where
+lit :: Integer -> ExprT
+mul :: ExprT -> ExprT -> ExprT
+add :: ExprT -> ExprT -> ExprT
+
+instance Expr ExprT where
+lit a = Lit a
+mul a b = Mul a b
+add a b = Add a b
 
 eval :: ExprT -> Integer
 eval (Lit n) = n
