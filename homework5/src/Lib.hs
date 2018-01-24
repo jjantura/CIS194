@@ -3,7 +3,7 @@
 module Lib
     ( eval,
     evalStr,
-    lit, mul, add
+    lit, mul, add, MinMax, Mod7
     ) where
 
 import Data.Maybe
@@ -40,3 +40,16 @@ instance Expr Integer where
     lit = id
     add = (+)
     mul = (*) 
+
+newtype MinMax = MinMax Integer deriving (Show, Eq)
+newtype Mod7 = Mod7 Integer deriving (Show, Eq)
+
+instance Expr MinMax where
+    lit = MinMax
+    add (MinMax a) (MinMax b) = MinMax (max a b) 
+    mul (MinMax a) (MinMax b) = MinMax (min a b) 
+
+instance Expr Mod7 where
+    lit a = Mod7 (a `mod` 7)     
+    add (Mod7 a) (Mod7 b) = Mod7 ((a + b) `mod` 7) 
+    mul (Mod7 a) (Mod7 b) = Mod7 ((a * b) `mod` 7)     
