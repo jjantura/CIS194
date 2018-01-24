@@ -1,3 +1,6 @@
+
+{-# OPTIONS_GHC -Wall -Werror #-}
+-- {-# LANGUAGE TypeSynonymInstances, FlexibleInstances #-}
 module Lib
     ( eval,
     evalStr,
@@ -9,14 +12,14 @@ import ExprT
 import Parser
 
 class Expr a where
-lit :: Integer -> ExprT
-mul :: ExprT -> ExprT -> ExprT
-add :: ExprT -> ExprT -> ExprT
+    lit :: Integer -> a
+    mul :: a -> a -> a
+    add :: a -> a -> a
 
 instance Expr ExprT where
-lit a = Lit a
-mul a b = Mul a b
-add a b = Add a b
+    lit = Lit
+    mul = Mul
+    add = Add
 
 eval :: ExprT -> Integer
 eval (Lit n) = n
@@ -27,3 +30,9 @@ evalStr :: String -> Maybe Integer
 evalStr s = if isJust $ maybeExp then Just $ eval (fromJust maybeExp) else Nothing 
             where 
                 maybeExp = parseExp Lit Add Mul s
+
+
+instance Expr Bool where
+    lit a = if a <= 0 then True else False
+    add a b = a || b
+    mul a b = a && b
