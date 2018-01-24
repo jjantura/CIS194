@@ -1,6 +1,5 @@
 
 {-# OPTIONS_GHC -Wall -Werror #-}
--- {-# LANGUAGE TypeSynonymInstances, FlexibleInstances #-}
 module Lib
     ( eval,
     evalStr,
