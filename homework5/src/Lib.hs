@@ -32,7 +32,7 @@ evalStr s = if isJust $ maybeExp then Just $ eval (fromJust maybeExp) else Nothi
 
 
 instance Expr Bool where
-    lit a = if a <= 0 then False else True
+    lit a = not (a <= 0)
     add a b = a || b
     mul a b = a && b
 
