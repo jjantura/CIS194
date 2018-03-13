@@ -1,8 +1,13 @@
+{-# OPTIONS_GHC -fno-warn-missing-methods #-}
+{-# LANGUAGE FlexibleInstances #-}
+
 module Lib
     ( fib, 
     fib2, 
     fibs1,
-    fibs2
+    fibs2,
+    Stream(..),
+    streamToList
     ) where
 
 -- exercise 1
@@ -20,3 +25,11 @@ fib2 x y = x : fib2 y (x + y)
 fibs2 :: [Integer]
 fibs2 = fib2 1 1
 
+-- exercise 3
+data Stream a = Cons a (Stream a) 
+
+streamToList :: Stream a -> [a]
+streamToList (Cons y z) = y:streamToList z
+
+instance Show a => Show (Stream a) where
+    show = show . take 20 . streamToList 
