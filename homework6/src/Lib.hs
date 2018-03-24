@@ -7,7 +7,8 @@ module Lib
     fibs1,
     fibs2,
     Stream(..),
-    streamToList
+    streamToList,
+    streamRepeat
     ) where
 
 -- exercise 1
@@ -33,3 +34,11 @@ streamToList (Cons y z) = y:streamToList z
 
 instance Show a => Show (Stream a) where
     show = show . take 20 . streamToList 
+
+-- exercise 4
+streamRepeat :: a -> Stream a
+streamRepeat a = Cons a (streamRepeat a)
+
+streamMap :: (a -> b) -> Stream a -> Stream b
+streamMap f (Cons y ys) = Cons (f y) (streamMap f ys)
+
