@@ -9,7 +9,8 @@ module Lib
     Stream(..),
     streamToList,
     streamRepeat,
-    streamFromSeed
+    streamFromSeed,
+    nats
     ) where
 
 -- exercise 1
@@ -45,3 +46,10 @@ streamMap f (Cons y ys) = Cons (f y) (streamMap f ys)
 
 streamFromSeed :: (a -> a) -> a -> Stream a
 streamFromSeed f a = Cons a (streamFromSeed f (f a)) 
+
+-- exercise 5
+nats :: Stream Integer
+nats = streamFromSeed (+1) 0 
+
+ruler :: Stream Integer
+ruler = undefined
