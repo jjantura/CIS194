@@ -8,7 +8,8 @@ module Lib
     fibs2,
     Stream(..),
     streamToList,
-    streamRepeat
+    streamRepeat,
+    streamFromSeed
     ) where
 
 -- exercise 1
@@ -42,3 +43,5 @@ streamRepeat a = Cons a (streamRepeat a)
 streamMap :: (a -> b) -> Stream a -> Stream b
 streamMap f (Cons y ys) = Cons (f y) (streamMap f ys)
 
+streamFromSeed :: (a -> a) -> a -> Stream a
+streamFromSeed f a = Cons a (streamFromSeed f (f a)) 
