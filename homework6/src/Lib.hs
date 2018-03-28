@@ -51,5 +51,14 @@ streamFromSeed f a = Cons a (streamFromSeed f (f a))
 nats :: Stream Integer
 nats = streamFromSeed (+1) 0 
 
+-- from bschwb/cis194 :( 
+
+interleaveStreams :: Stream a -> Stream a -> Stream a
+interleaveStreams (Cons y ys) zs = Cons y (interleaveStreams zs ys)
+
 ruler :: Stream Integer
-ruler = undefined
+ruler = startRuler 0
+
+startRuler :: Integer -> Stream Integer
+startRuler y = interleaveStreams (streamRepeat y) (startRuler (y+1))
+
