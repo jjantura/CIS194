@@ -63,3 +63,4 @@ ruler = startRuler 0
 startRuler :: Integer -> Stream Integer
 startRuler y = interleaveStreams (streamRepeat y) (startRuler (y+1))
 
+-- TODO: do optional tasks after finishing all exercises 
