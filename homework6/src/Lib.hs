@@ -10,7 +10,8 @@ module Lib
     streamToList,
     streamRepeat,
     streamFromSeed,
-    nats
+    nats,
+    ruler
     ) where
 
 -- exercise 1
